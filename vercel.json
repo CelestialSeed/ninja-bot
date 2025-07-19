@@ -1,0 +1,65 @@
+Skip to content
+Navigation Menu
+CelestialSeed
+EAGLE-CODEX
+ 
+Type / to search
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+EAGLE-CODEX
+/
+
+in
+main
+
+Edit
+
+Preview
+Indent mode
+
+Indent size
+
+Line wrap mode
+
+Editing vercel.json file contents
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/ninja.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/ninja",
+      "dest": "api/ninja.js"
+    }
+  ]
+}
+
+Use Control + Shift + m to toggle the tab key moving focus. Alternatively, use esc then tab to move to the next interactive element on the page.
+New File at / · CelestialSeed/EAGLE-CODEX
