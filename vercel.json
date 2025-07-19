@@ -1,15 +1,32 @@
-{
-  "version": 2,
-  "builds": [
-    {
-      "src": "ninja.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "ninja.js"
-    }
-  ]
+// File: api/ninja.js
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).send('Method Not Allowed');
+  }
+
+  const rawBody = await getRawBody(req);
+  const interaction = JSON.parse(rawBody);
+
+  // Basic required PING response
+  if (interaction.type === 1) {
+    return res.status(200).json({ type: 1 });
+  }
+
+  return res.status(400).send('Unhandled interaction');
+}
+
+async function getRawBody(req) {
+  return new Promise((resolve, reject) => {
+    let data = '';
+    req.on('data', chunk => (data += chunk));
+    req.on('end', () => resolve(data));
+    req.on('error', reject);
+  });
 }
